@@ -4,13 +4,16 @@
 // test example
 
 var re = new RegExp(_r.ctBracketTxt("[", "[\\w]*"));
+
 re.test("[aassadas]");
 //true
 
 var re = new RegExp(_r.ctBracketTxt("(", "[\\w]*"));
+
 re.test("(aassadas)");
 //true
 
 var re = new RegExp(_r.ctBracketTxt("{", "[\\w]*"));
+
 re.test("{aassadas}");
 //true
