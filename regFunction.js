@@ -1,14 +1,19 @@
 let regFunc = {
     regHistory : []
     , pushHistory : function(regtext){
-        this.regHistory.push(this.regHistory);
+        this.regHistory.push(regtext);
     }
     , backHistory : function(){
+        if(this.regHistory.length == 0){
+            alert("히스토리가 없습니다.");
+            return '';
+        }
         return this.regHistory.pop();
     }
     , ctBracketTxt : function (bracketType, inText){
         let bracketTypeOpen;
         let bracketTypeClose;
+        this.pushHistory(inText);
         if(bracketType == '[' || bracketType == ']' || bracketType == '[]'){
             bracketTypeOpen = '(\\[)';
             bracketTypeClose = '(\\])';

@@ -5,25 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="regFunction.js"></script>
+    
 </head>
 <body>
+    
     Hello world!!
 
     <input type="text" name="" id="regTxt">
-    <button>[] 괄호로 감싸기</button>
-    <button>() 괄호로 감싸기</button>
-    <button>{} 괄호로 감싸기</button>
+    <button onclick="createBracket('[')">[] 괄호로 감싸기</button>
+    <button onclick="createBracket('(')">() 괄호로 감싸기</button>
+    <button onclick="createBracket('{')">{} 괄호로 감싸기</button>
 
-    <button onclick="_r.plusOption('?')">0번 또는 1개 일치</button>
-    <button onclick="_r.plusOption('*')">0번 이상 일치</button>
-    <button onclick="_r.plusOption('+')">1번 이상 일치</button>
-    <input type="text" name="" id="" value=""><button onclick="_r.plusOption()"></button>
-    <button onclick="_r.plusOption()">() 괄호로 감싸기</button>
-    <button onclick="_r.plusOption()">{} 괄호로 감싸기</button>
-    <button onclick="_r.plusOption()">[] 괄호로 감싸기</button>
-    <button onclick="_r.plusOption()">() 괄호로 감싸기</button>
-    <button onclick="_r.plusOption()">{} 괄호로 감싸기</button>
-
+    <button onclick="plusOption('?')">0번 또는 1개 일치</button>
+    <button onclick="plusOption('*')">0번 이상 일치</button>
+    <button onclick="plusOption('+')">1번 이상 일치</button>
+    <!-- <input type="text" name="" id="" value=""><button onclick="_r.plusOption()"></button> -->
+    <button onclick="back()">되돌리기</button>
     <textarea id="testTextArea">
 
     </textarea>
@@ -31,5 +28,20 @@
 
 
     </div>
+    <script>
+        var input = document.getElementById("regTxt");
+        function createBracket(bracketType){
+            input.value = _r.ctBracketTxt(bracketType, input.value);
+        }
+        function back(){
+            let backTxt= _r.backHistory();
+            if('' != backTxt){
+                input.value = backTxt;
+            }
+        }
+        function plusOption(mark){
+            input.value += _r.plusOption(mark);
+        }
+    </script>
 </body>
 </html>
