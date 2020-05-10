@@ -29,6 +29,7 @@ let regFunc = {
         return bracketTypeOpen + inText + bracketTypeClose;
     }
     , plusOption : function(mark, num, min, max){
+        this.pushHistory(regText);
         if(arguments.length > 1){
             if(typeof min == "number"){
                 return "{"+min+",}";
@@ -43,8 +44,8 @@ let regFunc = {
             return mark;
         }
     }
-    , createRegExp : function(regText){
-        this.pushHistory(regText);
+    , createRegExp : function(regText, flag){
+        if(flag != undefined) return new RegExp(regText, flag);
         return new RegExp(regText);
     }
 }

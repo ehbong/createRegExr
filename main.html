@@ -8,8 +8,6 @@
     
 </head>
 <body>
-    
-    Hello world!!
 
     <input type="text" name="" id="regTxt">
     <button onclick="createBracket('[')">[] 괄호로 감싸기</button>
@@ -21,15 +19,19 @@
     <button onclick="plusOption('+')">1번 이상 일치</button>
     <!-- <input type="text" name="" id="" value=""><button onclick="_r.plusOption()"></button> -->
     <button onclick="back()">되돌리기</button>
-    <textarea id="testTextArea">
-
+    <br>
+    <textarea id="testTextArea" cols="50" rows="20">
+testTextArea
+[testTextArea]
+(testTextArea)
+<testTextArea>
     </textarea>
     <div id="printRegText">
 
 
     </div>
     <script>
-        var input = document.getElementById("regTxt");
+        const input = document.getElementById("regTxt");
         function createBracket(bracketType){
             input.value = _r.ctBracketTxt(bracketType, input.value);
         }
@@ -42,6 +44,15 @@
         function plusOption(mark){
             input.value += _r.plusOption(mark);
         }
+        function changeText(){
+            let regEx = _r.createRegExp("("+input.value+")", "g");
+            let testTxt = document.getElementById("testTextArea").value;
+            let selectedTxt = testTxt.replace(regEx, "<b>$1</b>");
+            let printDiv = document.getElementById("printRegText");
+            printDiv.innerHTML = "<span>"+selectedTxt+"</span>";
+            // 태그 형태의 문자열은 보이지 않는 문제
+        }   
+
     </script>
 </body>
 </html>
