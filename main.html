@@ -31,21 +31,21 @@ testTextArea
 
     </div>
     <script>
-        const input = document.getElementById("regTxt");
+        const inputObj = document.getElementById("regTxt");
         function createBracket(bracketType){
-            input.value = _r.ctBracketTxt(bracketType, input.value);
+            inputObj.value = _r.ctBracketTxt(bracketType, _s.getSelectedStr(inputObj));
         }
         function back(){
             let backTxt= _r.backHistory();
             if('' != backTxt){
-                input.value = backTxt;
+                inputObj.value = backTxt;
             }
         }
         function plusOption(mark){
-            input.value += _r.plusOption(mark);
+            inputObj.value += _r.plusOption(mark);
         }
         function changeText(){
-            let regEx = _r.createRegExp("("+input.value+")", "g");
+            let regEx = _r.createRegExp("("+_s.getSelectedStr(inputObj)+")", "g");
             let testTxt = document.getElementById("testTextArea").value;
             let selectedTxt = testTxt.replace(regEx, "<b>$1</b>");
             let printDiv = document.getElementById("printRegText");

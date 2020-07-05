@@ -50,4 +50,20 @@ let regFunc = {
     }
 }
 
+let selectFunc = {
+    getCursorLocation : function(obj){
+        return obj.selectionEnd;
+    }
+    , getSeletedBoundLocation : function(obj){
+        return [obj.selectionStart, obj.selectionEnd];
+    }
+    , getSelectLocation : function(obj){
+        return obj.selectionStart == obj.selectionEnd ? this.getCursorLocation(obj) : this.getSeletedBoundLocation(obj);
+    }
+    , getSelectedStr : function(obj){
+        return typeof this.getSelectLocation(obj) === "number" ? obj.value : obj.value.substring(this.getSeletedBoundLocation(obj)[0], this.getSeletedBoundLocation(obj)[1]);
+    }
+}
+
+let _s = selectFunc;
 let _r = regFunc;
