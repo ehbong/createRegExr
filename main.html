@@ -1,15 +1,15 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="regFunction.js"></script>
-    
-</head>
-<body>
-
-    <input type="text" name="" id="regTxt">
+  </head>
+  <body>
+    <input type="text" name="" id="regTxt" />
     <button onclick="createBracket('[')">[] 괄호로 감싸기</button>
     <button onclick="createBracket('(')">() 괄호로 감싸기</button>
     <button onclick="createBracket('{')">{} 괄호로 감싸기</button>
@@ -19,40 +19,36 @@
     <button onclick="plusOption('+')">1번 이상 일치</button>
     <!-- <input type="text" name="" id="" value=""><button onclick="_r.plusOption()"></button> -->
     <button onclick="back()">되돌리기</button>
-    <br>
+    <br />
     <textarea id="testTextArea" cols="50" rows="20">
 testTextArea
 [testTextArea]
 (testTextArea)
 <testTextArea>
     </textarea>
-    <div id="printRegText">
-
-
-    </div>
+    <div id="printRegText"></div>
     <script>
-        const inputObj = document.getElementById("regTxt");
-        function createBracket(bracketType){
-            inputObj.value = _r.ctBracketTxt(bracketType, _s.getSelectedStr(inputObj));
+      const inputObj = document.getElementById("regTxt");
+      function createBracket(bracketType) {
+        inputObj.value = _r.ctBracketTxt(bracketType, _s.getSelectedStr(inputObj));
+      }
+      function back() {
+        let backTxt = _r.backHistory();
+        if ("" != backTxt) {
+          inputObj.value = backTxt;
         }
-        function back(){
-            let backTxt= _r.backHistory();
-            if('' != backTxt){
-                inputObj.value = backTxt;
-            }
-        }
-        function plusOption(mark){
-            inputObj.value += _r.plusOption(mark);
-        }
-        function changeText(){
-            let regEx = _r.createRegExp("("+_s.getSelectedStr(inputObj)+")", "g");
-            let testTxt = document.getElementById("testTextArea").value;
-            let selectedTxt = testTxt.replace(regEx, "<b>$1</b>");
-            let printDiv = document.getElementById("printRegText");
-            printDiv.innerHTML = "<span>"+selectedTxt+"</span>";
-            // 태그 형태의 문자열은 보이지 않는 문제
-        }   
-
+      }
+      function plusOption(mark) {
+        inputObj.value += _r.plus(mark);
+      }
+      function changeText() {
+        let regEx = _r.createRegExp("(" + _s.getSelectedStr(inputObj) + ")", "g");
+        let testTxt = document.getElementById("testTextArea").value;
+        let selectedTxt = testTxt.replace(regEx, "<b>$1</b>");
+        let printDiv = document.getElementById("printRegText");
+        printDiv.innerHTML = "<span>" + selectedTxt + "</span>";
+        // 태그 형태의 문자열은 보이지 않는 문제
+      }
     </script>
-</body>
+  </body>
 </html>
